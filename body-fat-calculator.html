@@ -1,0 +1,110 @@
+<html>
+    <head>
+        <title>Body Fat Calculator</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="card">
+                <div class="card-header text-center bg-primary text-white">Body Fat Calculator</div>
+                <div class="card-body">
+                    <form class="w-50 m-auto" onsubmit="return false">
+                        <div class="form-group">
+                            <label>Height(cm): </label>
+                            <input type="number" name="" required id="height" placeholder="180" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Neck(cm): </label>
+                            <input type="number" name="" required id="neck" placeholder="40" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Waist(cm): </label>
+                            <input type="number" name="" required id="waist" placeholder="80" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Hip(cm):(Only for Female) </label>
+                            <input type="number" name="" required id="hip" placeholder="90" class="form-control">
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-info text-white" onclick="calculateBodyFatMale()">Male Calculate</button>
+                            <button type="submit" class="btn btn-danger text-white" onclick="calculateBodyFatFemale()">Female Calculate</button>
+                        </div>
+                        <div class="form-group">
+                            <label>Body Fat(%): </label>
+                            <input type="number" name="" id="body_fat" class="form-control" readonly>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center text-white">
+                    <table class="table">
+                        <tr >
+                            <th></th>
+                            <th>Men</th>
+                            <th>Woman</th>
+                        </tr>
+                        <tr class="table-primary">
+                            <td>Essential</td>
+                            <td>%2-5</td>
+                            <td>%10-13</td>
+                        </tr>
+                        <tr class="table-success">
+                            <td>Athlete</td>
+                            <td>%6-12</td>
+                            <td>%14-20</td>
+                        </tr>
+                        <tr class="table-info">
+                            <td>Fit</td>
+                            <td>%13-17</td>
+                            <td>%21-24</td>
+                        </tr>
+                        <tr class="table-warning">
+                            <td>Average</td>
+                            <td>%18-24</td>
+                            <td>%25-31</td>
+                        </tr>
+                        <tr class="table-danger">
+                            <td>Obesite</td>
+                            <td>%25+</td>
+                            <td>%32+</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+		 <div class="card-footer text-center text-white bg-dark">
+			<p><b>@2021 By Cemal Sofuoglu</b></p>
+		</div>
+
+        <script>
+
+            function calculateBodyFatMale(){
+                let height = document.getElementById("height").value;
+                let neck = document.getElementById("neck").value;
+                let waist = document.getElementById("waist").value;
+
+                let bodyFatMale = 86.010 * Math.log10(waist - neck) - 70.041 * Math.log10(height) + 36.76
+
+                document.getElementById("body_fat").value = bodyFatMale
+            }
+
+            function calculateBodyFatFemale(){
+                let height = document.getElementById("height").value;
+                let neck = document.getElementById("neck").value;
+                let waist = document.getElementById("waist").value;
+                let hip = document.getElementById("hip").value;
+
+                let bodyFatFemale = 63.205 * Math.log10(waist + hip - neck) - 97.684 * Math.log10(height) - 78.387
+
+                document.getElementById("body_fat").value = bodyFatFemale
+            }
+
+     
+        </script>
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        
+    </body>
+</html>
